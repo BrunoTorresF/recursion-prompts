@@ -79,7 +79,19 @@ var sumBelow = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+/* input begin, end numbers; output array of numbers, inclusive
+   Create empty array for result numbers
+   Begin at x, add 1, test is x+1 < y, if true, push to array
+   End when x+1 === y
+   return array   */
 var range = function(x, y) {
+  let results = [];
+  if (x + 1 === y) {
+    return results;
+  } else if (x + 1 < y) {
+      results.push(range(x + 1, y))
+  }
+  return results;
 };
 
 // 7. Compute the exponent of a number.
