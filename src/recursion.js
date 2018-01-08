@@ -110,15 +110,10 @@ var exponent = function(base, exp) {
   if (exp === 0) {
     return 1;
   }
-  if (exp === 1) {
-    return base;
-  }
-  if (exp > 1) {
-    return base * exponent(base, exp - 1);
-  }
   if (exp < 0) {
     return 1 / exponent(base, -exp);
   }
+  return base * exponent(base, exp - 1);
 };
 
 // 8. Determine if a number is a power of two.
