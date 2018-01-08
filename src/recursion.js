@@ -107,13 +107,14 @@ var range = function(x, y) {
   Multiply base by base an exp number of times
   Exponentation with negative number is (1/base^exp)*/
 var exponent = function(base, exp) {
-  if (exp === 0) {
+  return exp === 0 ? 1 : exp < 0 ? 1 / (exponent(base, -exp)) : base * exponent(base, exp - 1);
+  /*if (exp === 0) {
     return 1;
   }
   if (exp < 0) {
     return 1 / exponent(base, -exp);
   }
-  return base * exponent(base, exp - 1);
+  return base * exponent(base, exp - 1);*/
 };
 
 // 8. Determine if a number is a power of two.
@@ -134,11 +135,32 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that reverses a string.
+/*Can turn string to array then string again or use native string methods
+  Reverse = string[0] becomes string[string.length - 1]*/
 var reverse = function(string) {
+  if (string === '') {
+    return '';
+  }
+  return reverse(string.substr(1)) + string.charAt(0);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
+/*palindromes are same back & forward
+  So string === reverse(string) and string[0] === string[string.length-1]
+  Input string, output boolean
+  Check letters, moving outside in (slice or substr method)
+  */
 var palindrome = function(string) {
+  string = string.toLowerCase().replace(/\s/g, '');
+  if (string.length === 1) {
+    return true;
+  }
+  if (string[0] === string[string.length - 1]) {
+    palindrome(string.substring(1, string.length - 1));
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
