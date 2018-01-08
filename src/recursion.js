@@ -85,13 +85,16 @@ var sumBelow = function(n) {
    End when x+1 === y
    return array   */
 var range = function(x, y) {
-  let results = [];
-  if (x + 1 === y) {
+  var results = [];
+  if (x === y || x === y - 1 || x === y + 1) {
     return results;
-  } else if (x + 1 < y) {
-      results.push(range(x + 1, y))
+  } else if (x < y) {
+      results.push(x + 1);
+      return results.concat(range(x + 1, y));
+  } else if (x > y) {
+      results.push(x - 1);
+      return results.concat(range(x - 1, y));
   }
-  return results;
 };
 
 // 7. Compute the exponent of a number.
