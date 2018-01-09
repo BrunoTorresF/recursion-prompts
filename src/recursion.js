@@ -277,11 +277,24 @@ var createArray = function(str) {
   } else {
     array.push(str[0]);
     return array.concat(createArray(str.substring(1)))
-  }  
+  }
 };
 
 // 17. Reverse the order of an array
+/* input array, output array
+   Will remove array[0], push to resultArray
+   repeat with array.slice(1), concat to resultArray
+   return resultArray
+   */
 var reverseArr = function(array) {
+  let result = [];
+  if (array.length === 0) {
+    return result;
+  }
+  if (array.length > 0) {
+    result.push(array[array.length - 1]);
+    return result.concat(reverseArr(array.slice(0, array.length - 1)));
+  }
 };
 
 // 18. Create a new array with a given value and length.
