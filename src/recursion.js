@@ -130,7 +130,7 @@ var powerOfTwo = function(n) {
   }
   if (n < 2) {
     return false;
-  }
+  };
   return powerOfTwo(n / 2)
 };
 
@@ -152,12 +152,11 @@ var reverse = function(string) {
   */
 var palindrome = function(string) {
   string = string.toLowerCase().replace(/\s/g, '');
-  if (string.length === 1) {
+  if (string.length === 1 || string.length === 0) {
     return true;
   }
   if (string[0] === string[string.length - 1]) {
-    palindrome(string.substring(1, string.length - 1));
-    return true;
+    return palindrome(string.substring(1, string.length - 1));
   } else {
     return false;
   }
@@ -209,7 +208,24 @@ var multiply = function(x, y) {
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods.
+/*divide = x - y, y amount of times
+  Input 2 numbers, output numbers
+  Base cases: when x/y is 0 or 1
+  subtract y from x, subtract 1 from y */
 var divide = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  if (x === 0 || x < 0 || y < 0) {
+    return 0;
+  }
+  if (y === 1) {
+    return x;
+  }
+  if (x < y) {
+    return y - x;
+  }
+  return divide(x - y, y)
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -218,6 +234,16 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+  if (x < 0 || y < 0) {
+    return null;
+  }
+  if (x === y) {
+    return x;
+  } else if (x > y) {
+    return gcd(x - y, y);
+  } else {
+    return gcd(x, y - x)
+  }
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
