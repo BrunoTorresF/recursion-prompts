@@ -219,13 +219,12 @@ var divide = function(x, y) {
   if (x === 0 || x < 0 || y < 0) {
     return 0;
   }
-  if (y === 1) {
-    return x;
+  if (x > 0 && y > 0) {
+    return 1 + divide(x - y, y)
+  } else {
+    return -1 + divide(x + y, y);
   }
-  if (x < y) {
-    return y - x;
-  }
-  return divide(x - y, y)
+
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -250,12 +249,35 @@ var gcd = function(x, y) {
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
+/* input 2 strings, output boolean
+   if str1[0] === str2[0], return true
+   then compare str1[0+1] to str2[0+1],
+   continue until 1 string is empty
+   */
 var compareStr = function(str1, str2) {
+  if (str1 === '' && str2 === '') {
+    return true;
+  }
+  if (str1[0] === str2[0]) {
+    return compareStr(str1.slice(1), str2.slice(1))
+  } else {
+    return false;
+  }
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
+/* input string, output array
+   Need output array, remove string elements one by one, push to array
+   */
 var createArray = function(str) {
+  let array = [];
+  if (str.length === 0) {
+    return array;
+  } else {
+    array.push(str[0]);
+    return array.concat(createArray(str.substring(1)))
+  }  
 };
 
 // 17. Reverse the order of an array
