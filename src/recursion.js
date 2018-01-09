@@ -216,7 +216,13 @@ var divide = function(x, y) {
   if (y === 0) {
     return NaN;
   }
-  if (x === 0 || x < 0 || y < 0) {
+  if (x === 0) {
+    return 0;
+  }
+  if (x < 0 && y > 0 && -x < y || x < -y) {
+    return 0;
+  }
+  if (x > 0 && y > 0 && x < y) {
     return 0;
   }
   if (x > 0 && y > 0) {
@@ -224,12 +230,11 @@ var divide = function(x, y) {
   } else {
     return -1 + divide(x + y, y);
   }
-
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
-// integers is the greatest integer that divides both x and y with no remainder.
-// gcd(4,36); // 4
+// integers is the greatest17, 5)).to.equal(~~(17 / 5)17, 5)).to.equal(~~(17 / 5) integer that divides both x and y with no remainder.
+// gcd(4,36); // 417, 5)).to.equal(~~(17 / 5)
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
